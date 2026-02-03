@@ -1,7 +1,7 @@
 lentoasemat = {}
 
 while True:
-    print("\nValitse toiminto:")
+    print("Valitse toiminto:")
     print("1 = Syötä uusi lentoasema")
     print("2 = Hae lentoaseman tiedot")
     print("3 = Lopeta")
