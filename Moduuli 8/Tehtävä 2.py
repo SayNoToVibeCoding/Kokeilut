@@ -23,8 +23,8 @@ yhteys = mysql.connector.connect(
     host='127.0.0.1',           # tai 'localhost'. Viittaa sinun omaan koneeseen.
     port= 3306,
     database='flight_game',     # tähän sinun tietokannan nimi
-    user='perususer',           # vaihda tähän sinun oma käyttäjätunnus
-    password='salainen',        # käyttäjän oikea salasana
+    user='roni',           # vaihda tähän sinun oma käyttäjätunnus
+    password='roni12345',        # käyttäjän oikea salasana
     autocommit=True
     )
 
