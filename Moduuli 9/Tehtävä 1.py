@@ -10,6 +10,3 @@ nopeus = 0
 auto1 = auto("ABC-123", 142,nopeus ,matka)
 
 print(f"{auto1.rekisteri}, huippunopeus {auto1.huippu}, nopeus {auto1.nopeus}, matka {auto1.matka}." )
-
-
-
