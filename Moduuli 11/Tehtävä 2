@@ -1,0 +1,41 @@
+class Auto:
+    def __init__(self, rekisteri, huippu):
+        self.rekisteri = rekisteri
+        self.huippu = huippu
+        self.nopeus = 0
+        self.matka = 0
+
+    def kiihdytä(self, muutos):
+        self.nopeus += muutos
+        if self.nopeus > self.huippu:
+            self.nopeus = self.huippu
+        if self.nopeus < 0:
+            self.nopeus = 0
+
+    def kulje(self, aika):
+        self.matka += self.nopeus * aika
+
+
+class Sähköauto(Auto):
+    def __init__(self, rekisteri, huippu, akkukapasiteetti):
+        super().__init__(rekisteri, huippu)
+        self.akkukapasiteetti = akkukapasiteetti
+
+
+class Polttomoottoriauto(Auto):
+    def __init__(self, rekisteri, huippu, tankinkoko):
+        super().__init__(rekisteri, huippu)
+        self.tankinkoko = tankinkoko
+
+
+sähköauto = Sähköauto("ABC-15", 180, 52.5)
+polttomoottoriauto = Polttomoottoriauto("ACD-123", 165, 32.3)
+
+sähköauto.kiihdytä(120)
+polttomoottoriauto.kiihdytä(100)
+
+sähköauto.kulje(3)
+polttomoottoriauto.kulje(3)
+
+print(f"{sähköauto.rekisteri} (sähköauto, {sähköauto.akkukapasiteetti} kWh): {sähköauto.matka} km")
+print(f"{polttomoottoriauto.rekisteri} (polttomoottori, {polttomoottoriauto.tankinkoko} l): {polttomoottoriauto.matka} km")
