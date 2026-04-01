@@ -1,0 +1,41 @@
+import urllib.request
+import urllib.parse
+import urllib.error
+import json
+
+def hae_saa():
+    api_key = "aa87b718254243e0bc3101805260104"
+    
+    kaupunki = input("Anna paikkakunnan nimi: ")
+    
+    kaupunki_koodattu = urllib.parse.quote(kaupunki)
+    #Annettu nettisivu ei toiminut joten sovelsin ilmaisen weather api sivuston avulla.
+    url = f"http://api.weatherapi.com/v1/current.json?key={api_key}&q={kaupunki_koodattu}&lang=fi"
+    
+    try:
+        with urllib.request.urlopen(url) as vastaus:
+
+            raakadata = vastaus.read().decode('utf-8')
+            
+            data = json.loads(raakadata)
+            
+            kuvaus = data["current"]["condition"]["text"]
+            lampotila = data["current"]["temp_c"]
+            
+            print(f"Sää paikkakunnalla {kaupunki.capitalize()}: {kuvaus}")
+            print(f"Lämpötila: {lampotila} °C")
+            
+    except urllib.error.HTTPError as e:
+        if e.code == 400:
+            print("Paikkakuntaa ei löytynyt. Tarkista oikeinkirjoitus.")
+        elif e.code in (401, 403):
+            print("API-avain on virheellinen tai puuttuu.")
+        else:
+            print(f"HTTP-virhe: {e.code} - {e.reason}")
+
+    except urllib.error.URLError as e:
+        print(f"Yhteysongelma: Pysähdyikö netti? Syy: {e.reason}")
+    except json.JSONDecodeError:
+        print("Virhe: Vastaanotettua dataa ei voitu käsitellä oikein.")
+if __name__ == "__main__":
+    hae_saa()
